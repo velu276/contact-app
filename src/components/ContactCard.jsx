@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import { BsFillTrashFill } from "react-icons/bs";
+import { BsTrash } from "react-icons/bs";
+import {Link} from 'react-router-dom';
+import Avatar from 'react-avatar';
 
 
 class ContactCard extends Component{
@@ -7,15 +9,24 @@ class ContactCard extends Component{
     render(){
         return(
             <li className="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                <div className="content">
-                    <div className="h5 mb-0">{this.props.contact.name}</div>
-                    <div>{this.props.contact.email}</div> 
-                </div>
-                <a>
-                    <BsFillTrashFill size={23} color="#000000"/>
+                <Link to={{pathname:`/contact/${this.props.contact.id}`, state:{ contact : this.props.contact}}}>
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-auto p-0 mx-2">
+                                <Avatar name={this.props.contact.name} size="40" round={true} className="m-0 p-0" />
+                            </div>
+                            <div className="col-auto p-0 mx-2">
+                                <div className="h5 mb-0">{this.props.contact.name}</div>
+                                <div>{this.props.contact.email}</div> 
+                            </div>
+                        </div>
+                    </div>
+                </Link>
+                <a onClick={() => this.props.deleteContact(this.props.contact.id)}>
+                    <BsTrash size={23} color="red"/>
                 </a>
-                
             </li>
+            
         );
     }
 };
