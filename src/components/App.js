@@ -4,6 +4,7 @@ import AddContact from './AddContact';
 import ContactList from './ContactList';
 import ContactDetail from './ContactDetail';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import ConfirmDelete from './ConfirmDelete';
 
 
 class App extends Component{
@@ -68,6 +69,10 @@ class App extends Component{
                         <Route
                             path="/contact/:id"
                             component={ContactDetail}
+                        />
+                        <Route 
+                            path = "/delete"
+                            render = {(props) => <ConfirmDelete {...props} deleteContact={this.deleteContactHandler} />}
                         />
                     </Switch>
                 </Router>

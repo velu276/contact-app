@@ -1,15 +1,15 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { BsTrash } from "react-icons/bs";
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Avatar from 'react-avatar';
 
 
-class ContactCard extends Component{
+class ContactCard extends Component {
 
-    render(){
-        return(
+    render() {
+        return (
             <li className="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                <Link to={{pathname:`/contact/${this.props.contact.id}`, state:{ contact : this.props.contact}}}>
+                <Link to={{ pathname: `/contact/${this.props.contact.id}`, state: { contact: this.props.contact } }}>
                     <div className="container">
                         <div className="row">
                             <div className="col-auto p-0 mx-2">
@@ -17,16 +17,19 @@ class ContactCard extends Component{
                             </div>
                             <div className="col-auto p-0 mx-2">
                                 <div className="h5 mb-0">{this.props.contact.name}</div>
-                                <div>{this.props.contact.email}</div> 
+                                <div>{this.props.contact.email}</div>
                             </div>
                         </div>
                     </div>
                 </Link>
-                <a onClick={() => this.props.deleteContact(this.props.contact.id)}>
-                    <BsTrash size={23} color="red"/>
-                </a>
+                <Link to={{pathname:"/delete", state : {contact : this.props.contact}}}>
+                    <a>
+                        <BsTrash size={23} color="red" />
+                    </a>
+                </Link>
+
             </li>
-            
+
         );
     }
 };
